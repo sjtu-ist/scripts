@@ -1,0 +1,16 @@
+---
+- name: Start hadoop by docker
+  hosts: test
+  tasks:
+    - name: clean
+      shell: docker rm -f hadoop
+      ignore_errors: True
+
+    - name: copy start sh
+      copy:
+        src: ./mystart.sh
+        dest: "{{hadoop_home}}/sbin"
+        mode: 0744
+
+    - name: start
+      shell: docker run -d -v {{hadoop_home}}:/root --cpus={{hadoop_cpuset}} --name=hadoop {{hadoop-ops-image}} /bin/bash -c /root/sbin/mystart.sh
