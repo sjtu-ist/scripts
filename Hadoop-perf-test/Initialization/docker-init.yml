@@ -13,4 +13,4 @@
         mode: 0744
 
     - name: start
-      shell: docker run -d -v {{hadoop_home}}:/root --cpus={{hadoop_cpuset}} --name=hadoop {{hadoop-ops-image}} /bin/bash -c /root/sbin/mystart.sh
+      shell: docker run -d -v {{hadoop_home}}:/root --cpus={{hadoop_cpuset}} --name=hadoop {{hadoop_ops_image}} /bin/bash -c /root/sbin/mystart.sh
